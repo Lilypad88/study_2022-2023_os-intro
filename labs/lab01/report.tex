@@ -1,0 +1,150 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Отчёт по лабораторной работе №1},
+  pdfauthor={Пустобаев Леонид},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Отчёт по лабораторной работе №1}
+\author{Пустобаев Леонид}
+\date{2025-09-15}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+Цель работы Целью данной работы является изучение идеологии и применения
+средств контроля версий, а также освоение практических навыков работы с
+системой git.
+
+Ход работы Базовая настройка git Я начал с настройки основных параметров
+git, указав свое имя и email. Выполнил следующие команды:
+
+git config --global user.name ``Иванов Иван'' git config --global
+user.email
+``\href{mailto:ivanov@example.com}{\nolinkurl{ivanov@example.com}}'' git
+config --global core.quotepath false git config --global
+init.defaultBranch master git config --global core.autocrlf input git
+config --global core.safecrlf warn
+
+Создание SSH-ключей Сгенерировал SSH-ключи для безопасного подключения к
+удаленным репозиториям. Выполнил команды:
+
+ssh-keygen -t rsa -b 4096 ssh-keygen -t ed25519
+
+Создание PGP-ключей Создал PGP-ключ для подписи коммитов с помощью
+команды:
+
+gpg --full-generate-key
+
+Выбрал тип RSA and RSA с размером 4096 бит и указал свои данные при
+запросе.
+
+Настройка GitHub Зарегистрировался на GitHub и добавил SSH-ключ в
+настройках аккаунта. Для этого скопировал публичный ключ командой:
+
+cat \textasciitilde/.ssh/id\_ed25519.pub
+
+и добавил его в разделе SSH and GPG keys настроек GitHub.
+
+Экспортировал PGP-ключ и также добавил его в настройках GitHub с помощью
+команды:
+
+gpg --armor --export и указал отпечаток ключа
+
+Настройка автоматической подписи коммитов Настроил git для
+автоматической подписи коммитов командами:
+
+git config --global user.signingkey указал отпечаток PGP ключа git
+config --global commit.gpgsign true
+
+Создание рабочего пространства Создал каталог для лабораторных работ и
+инициализировал git-репозиторий:
+
+mkdir -p \textasciitilde/work/study/2023-2024/os-intro cd
+\textasciitilde/work/study/2023-2024/os-intro git init
+
+Создал тестовый файл и сделал первый коммит:
+
+echo ``Начало работы над лабораторными'' \textgreater{} README.md git
+add README.md git commit -S -m ``feat: initial commit''
+
+Работа с удаленным репозиторием Связал локальный репозиторий с удаленным
+на GitHub:
+
+git remote add origin указал ссылку на репозиторий git push -u origin
+master
+
+Выводы В ходе выполнения лабораторной работы я освоил основные принципы
+работы с системой контроля версий Git. Я научился настраивать рабочее
+окружение, создавать и настраивать SSH и PGP ключи для безопасной
+работы, а также подписывать коммиты для обеспечения их подлинности. Были
+получены практические навыки работы с базовыми командами git: создание
+репозитория, добавление файлов, создание коммитов и синхронизация с
+удаленным репозиторием на GitHub. Все цели работы были успешно
+достигнуты, и теперь я готов использовать git для последующих
+лабораторных работ и проектов.
+
+\end{document}

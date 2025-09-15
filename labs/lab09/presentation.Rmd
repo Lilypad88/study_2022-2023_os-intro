@@ -1,0 +1,25 @@
+---
+title: "Презентация. Лабораторная работа №9"
+author: "Пустобавев Леонид | НММбд-03-2024 | 1132246818"
+date: "`r Sys.Date()`"
+output:
+  beamer_presentation:
+    toc: true
+    slide_level: 2
+  ioslides_presentation:
+    widescreen: true
+    smaller: true
+---
+
+## Цель работы
+- Цель работы
+
+## Ход работы
+### Задача 1
+- Описание задачи 1
+
+### Задача 2
+- Описание задачи 2
+
+## Выводы
+- Итог работы

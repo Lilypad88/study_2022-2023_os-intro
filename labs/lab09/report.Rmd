@@ -1,0 +1,38 @@
+---
+title: "Отчёт по лабораторной работе №9"
+author: "Пустобаев Леонид"
+group: "НММбд-03-2024"
+student_id: "1132246818"
+date: "`r Sys.Date()`"
+output:
+  pdf_document:
+    toc: yes
+    number_sections: yes
+  html_document:
+    toc: yes
+    number_sections: yes
+  word_document:
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, fig.path = "screenshots/")
+screenshot_dir <- here::here("lab`09`", "screenshots")
+```
+
+# Цель работы
+*Цель работы*
+
+# Ход работы
+## Задача 1
+*Описание задачи 1*
+
+```{r task1-screenshots, echo=FALSE, out.width="80%", fig.align="center"}
+# knitr::include_graphics(file.path(screenshot_dir, "1.png"))
+```
+
+## Задача 2
+*Описание задачи 2*
+
+# Выводы
+*Выводы*
